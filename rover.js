@@ -8,6 +8,7 @@ class Rover {
    receiveMessage(message) {
       let results = {
          message: message.name,
+         commands: message.commands
       }
       return results;
    }
