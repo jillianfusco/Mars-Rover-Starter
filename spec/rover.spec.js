@@ -17,6 +17,14 @@ describe("Rover class", function() {
   });
 
   // test 8
-  
+  test("response returned by receiveMessage contains the name of the message", function() {
+    let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
+    let message = new Message('Test message with two commands', commands);
+    let rover = new Rover(1234);
+    let response = rover.receiveMessage(message);
+    expect(response.message).toEqual('Test message with two commands');
+  });
 
+  // test 9
+  
 });

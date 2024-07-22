@@ -6,8 +6,15 @@ class Rover {
    }
 
    receiveMessage(message) {
-
+      let results = {
+         message: message.name,
+      }
+      return results;
    }
 }
+
+// let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
+// let message = new Message('Test message with two commands', commands);
+// "response returned by receiveMessage contains the name of the message"
 
 module.exports = Rover;
