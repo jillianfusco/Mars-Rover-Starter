@@ -59,4 +59,13 @@ describe("Rover class", function() {
   });
 
   //test 12
+test("responds with a false completed value when attempting to move in LOW_POWER mode", function() {
+  let commands = [new Command("MODE_CHANGE", "LOW_POWER"), new Command("MOVE", 1234)];
+  let message = new Message("Test message with two commands", commands);
+  let rover = new Rover(5678);
+  let response = rover.receiveMessage(message);
+  expect(response.results[0].completed).toEqual(true);
+  expect(response.results[1].completed).toEqual(false);
+});
+
 });

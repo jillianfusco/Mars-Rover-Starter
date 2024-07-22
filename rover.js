@@ -21,6 +21,13 @@ class Rover {
          } else if (command.commandType === "MODE_CHANGE") {
             this.mode = command.value;
             results.push({completed: true});
+         } else if (command.commandType === "MOVE") {
+            if (this.mode === "LOW_POWER") {
+               results.push({completed: false})
+            } else {
+               this.position = command.value;
+               results.push({completed: true})
+            }
          } else {
             results.push({completed: false});
          }
@@ -29,12 +36,8 @@ class Rover {
       return {
          message:message.name,
          results: results
-      }
+      };
    }
 }
-
-// let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
-// let message = new Message('Test message with two commands', commands);
-// "response returned by receiveMessage contains the name of the message"
 
 module.exports = Rover;
