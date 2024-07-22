@@ -31,6 +31,29 @@ describe("Rover class", function() {
     let message = new Message('Test message with two commands', commands);
     let rover = new Rover(1234);
     let response = rover.receiveMessage(message);
-    expect(response.commands).toEqual([new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')]);
-  })
+    expect(response.results.length).toEqual(2);
+  });
+
+  // test 10
+  test("responds correctly to the status check command", function() {
+    let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
+    let message = new Message('Test message with two commands', commands);
+    let rover = new Rover(98382);
+    let response = rover.receiveMessage(message);
+    expect(response.results[0].completed).toEqual(true);
+    expect(response.results[1].roverStatus).toEqual({
+      mode: 'LOW_POWER',
+      generatorWatts: 110,
+      position: 98382
+    });
+  });
+
+  // // test 11
+  // test("responds correctly to the mode change command", function() {
+  //   let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
+  //   let message = new Message('Test message with two commands', commands);
+  //   let rover = new Rover(1234);
+  //   let response = rover.receiveMessage(message);
+  //   expect
+  // });
 });

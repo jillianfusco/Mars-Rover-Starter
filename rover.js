@@ -6,11 +6,30 @@ class Rover {
    }
 
    receiveMessage(message) {
-      let results = {
-         message: message.name,
-         commands: message.commands
+      let results = [];
+      
+      for (let command of message.commands) {
+         if (command.commandType === "STATUS_CHECK") {
+            results.push({
+               completed: true,
+               roverStatus: {
+                  mode: this.mode,
+                  generatorWatts: this.generatorWatts,
+                  position: this.position
+               }
+            });
+         } else if (command.commandType === "MODE_CHANGE") {
+            this.mode = command.value;
+            results.push({completed: true});
+         } else {
+            results.push({completed: false});
+         }
       }
-      return results;
+
+      return {
+         message:message.name,
+         results: results
+      }
    }
 }
 
