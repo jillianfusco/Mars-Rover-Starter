@@ -68,4 +68,14 @@ test("responds with a false completed value when attempting to move in LOW_POWER
   expect(response.results[1].completed).toEqual(false);
 });
 
+//test 13
+test("responds with the position for the move command", function() {
+  let commands = [new Command("MOVE", 1234)];
+  let message = new Message("Test message with one command", commands);
+  let rover = new Rover(5678);
+  let response = rover.receiveMessage(message);
+  expect(response.results[0].completed).toEqual(true);
+ expect(response.results[0].position).toEqual(1234);
+}); 
+
 });
