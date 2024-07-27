@@ -11,7 +11,6 @@ class Rover {
   receiveMessage(message) {
     let results = [];
 
-    // for of loop to refer to each object inside the message.commands array
     for (let commandObj of message.commands) {
       if (commandObj.commandType === "STATUS_CHECK") {
         results.push({
@@ -35,11 +34,11 @@ class Rover {
           completed: false,
         });
       } else if (commandObj.commandType === "MOVE") {
-         this.position = commandObj.value;
+        this.position = commandObj.value;
         results.push({
           completed: true,
         });
-      } 
+      }
     }
 
     console.log(results);
