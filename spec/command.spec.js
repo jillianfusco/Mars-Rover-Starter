@@ -15,7 +15,7 @@ describe("Command class", function() {
   // test 2
   test("constructor sets command type", function() {
     let modeCommand = new Command("MODE_CHANGE");
-    expect(modeCommand).toBeInstanceOf(Command);
+    expect(modeCommand.commandType).toEqual("MODE_CHANGE");
   });
 
   // test 3
